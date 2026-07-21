@@ -19,14 +19,11 @@ export function Contact() {
   const email = "ssmukundan3@gmail.com";
 
   const handleCopy = (e: React.MouseEvent) => {
+    e.preventDefault();
     e.stopPropagation();
     navigator.clipboard.writeText(email);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
-  };
-
-  const handleEmailClick = () => {
-    window.location.href = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}`;
   };
 
   return (
@@ -36,10 +33,10 @@ export function Contact() {
       </p>
 
       <div className="grid sm:grid-cols-2 gap-4">
-        {/* Dedicated Interactive Email Card */}
-        <div 
-          onClick={handleEmailClick}
-          className="card-surface card-surface-hover p-6 group flex items-center justify-between gap-4 cursor-pointer"
+        {/* Fail-Proof Native Mailto Link with Copy Button */}
+        <a
+          href={`mailto:${email}`}
+          className="card-surface card-surface-hover p-6 group flex items-center justify-between gap-4"
         >
           <div className="min-w-0">
             <p className="mono text-xs uppercase tracking-widest text-primary">Email</p>
@@ -48,13 +45,13 @@ export function Contact() {
           <button
             type="button"
             onClick={handleCopy}
-            className="px-3 py-1.5 text-xs font-mono rounded bg-primary/10 hover:bg-primary/20 text-primary transition-colors"
+            className="px-3 py-1.5 text-xs font-mono rounded bg-primary/10 hover:bg-primary/20 text-primary transition-colors shrink-0 z-10"
           >
             {copied ? "Copied! ✓" : "Copy"}
           </button>
-        </div>
+        </a>
 
-        {/* Other Links */}
+        {/* GitHub */}
         <a
           href="https://github.com/mukundan-code"
           target="_blank"
@@ -68,6 +65,7 @@ export function Contact() {
           <span className="text-primary opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 transition">→</span>
         </a>
 
+        {/* LinkedIn */}
         <a
           href="https://www.linkedin.com/in/mukundan-saravanan-aa5320323/"
           target="_blank"
@@ -81,6 +79,7 @@ export function Contact() {
           <span className="text-primary opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 transition">→</span>
         </a>
 
+        {/* CV */}
         <a
           href="/cv.pdf"
           target="_blank"
