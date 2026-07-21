@@ -14,10 +14,30 @@ export const Route = createFileRoute("/contact")({
 });
 
 const links = [
-  { label: "Email", value: "ssmukundan3@gmail.com", href: "https://mail.google.com/mail/?view=cm&fs=1&to=ssmukundan3@gmail.com" },
-  { label: "GitHub", value: "mukundan-code", href: "https://github.com/mukundan-code" },
-  { label: "LinkedIn", value: "Mukundan Saravanan", href: "https://www.linkedin.com/in/mukundan-saravanan-aa5320323/" },
-  { label: "CV", value: "Download PDF", href: "/cv.pdf" },
+  { 
+    label: "Email", 
+    value: "ssmukundan3@gmail.com", 
+    href: "https://mail.google.com/mail/?view=cm&fs=1&to=ssmukundan3@gmail.com",
+    external: false // Keeps it in the same window so pop-up blockers ignore it
+  },
+  { 
+    label: "GitHub", 
+    value: "mukundan-code", 
+    href: "https://github.com/mukundan-code",
+    external: true 
+  },
+  { 
+    label: "LinkedIn", 
+    value: "Mukundan Saravanan", 
+    href: "https://www.linkedin.com/in/mukundan-saravanan-aa5320323/",
+    external: true 
+  },
+  { 
+    label: "CV", 
+    value: "Download PDF", 
+    href: "/cv.pdf",
+    external: true 
+  },
 ];
 
 function Contact() {
@@ -31,8 +51,8 @@ function Contact() {
           <a
             key={l.label}
             href={l.href}
-            target="_blank"
-            rel="noreferrer"
+            target={l.external ? "_blank" : "_self"}
+            rel={l.external ? "noreferrer" : undefined}
             className="card-surface card-surface-hover p-6 group flex items-center justify-between gap-4"
           >
             <div className="min-w-0">
