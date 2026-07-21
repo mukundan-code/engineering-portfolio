@@ -2,19 +2,7 @@ import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Section } from "@/components/section";
 
-export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact — Mukundan Saravanan" },
-      { name: "description", content: "Get in touch with Mukundan Saravanan — email, GitHub and LinkedIn." },
-      { property: "og:title", content: "Contact — Mukundan Saravanan" },
-      { property: "og:description", content: "Reach out for engineering collaborations, work experience or interesting problems." },
-    ],
-  }),
-  component: Contact,
-});
-
-export function Contact() {
+function ContactComponent() {
   const [copied, setCopied] = useState(false);
   const email = "ssmukundan3@gmail.com";
 
@@ -33,10 +21,10 @@ export function Contact() {
       </p>
 
       <div className="grid sm:grid-cols-2 gap-4">
-        {/* Fail-Proof Native Mailto Link with Copy Button */}
+        {/* Email Card */}
         <a
           href={`mailto:${email}`}
-          className="card-surface card-surface-hover p-6 group flex items-center justify-between gap-4"
+          className="card-surface card-surface-hover p-6 group flex items-center justify-between gap-4 relative z-20 cursor-pointer"
         >
           <div className="min-w-0">
             <p className="mono text-xs uppercase tracking-widest text-primary">Email</p>
@@ -45,7 +33,7 @@ export function Contact() {
           <button
             type="button"
             onClick={handleCopy}
-            className="px-3 py-1.5 text-xs font-mono rounded bg-primary/10 hover:bg-primary/20 text-primary transition-colors shrink-0 z-10"
+            className="px-3 py-1.5 text-xs font-mono rounded bg-primary/10 hover:bg-primary/20 text-primary transition-colors shrink-0 z-30 cursor-pointer"
           >
             {copied ? "Copied! ✓" : "Copy"}
           </button>
@@ -56,7 +44,7 @@ export function Contact() {
           href="https://github.com/mukundan-code"
           target="_blank"
           rel="noreferrer"
-          className="card-surface card-surface-hover p-6 group flex items-center justify-between gap-4"
+          className="card-surface card-surface-hover p-6 group flex items-center justify-between gap-4 cursor-pointer"
         >
           <div className="min-w-0">
             <p className="mono text-xs uppercase tracking-widest text-primary">GitHub</p>
@@ -70,7 +58,7 @@ export function Contact() {
           href="https://www.linkedin.com/in/mukundan-saravanan-aa5320323/"
           target="_blank"
           rel="noreferrer"
-          className="card-surface card-surface-hover p-6 group flex items-center justify-between gap-4"
+          className="card-surface card-surface-hover p-6 group flex items-center justify-between gap-4 cursor-pointer"
         >
           <div className="min-w-0">
             <p className="mono text-xs uppercase tracking-widest text-primary">LinkedIn</p>
@@ -84,7 +72,7 @@ export function Contact() {
           href="/cv.pdf"
           target="_blank"
           rel="noreferrer"
-          className="card-surface card-surface-hover p-6 group flex items-center justify-between gap-4"
+          className="card-surface card-surface-hover p-6 group flex items-center justify-between gap-4 cursor-pointer"
         >
           <div className="min-w-0">
             <p className="mono text-xs uppercase tracking-widest text-primary">CV</p>
@@ -96,3 +84,15 @@ export function Contact() {
     </Section>
   );
 }
+
+export const Route = createFileRoute("/contact")({
+  head: () => ({
+    meta: [
+      { title: "Contact — Mukundan Saravanan" },
+      { name: "description", content: "Get in touch with Mukundan Saravanan — email, GitHub and LinkedIn." },
+      { property: "og:title", content: "Contact — Mukundan Saravanan" },
+      { property: "og:description", content: "Reach out for engineering collaborations, work experience or interesting problems." },
+    ],
+  }),
+  component: ContactComponent,
+});
