@@ -205,9 +205,9 @@ function Footer() {
         <div>
           <p className="mono text-xs uppercase tracking-widest text-muted-foreground">Connect</p>
           <ul className="mt-3 space-y-1.5 text-sm">
-            <li><a href="mailto:mukundan.saravanan@example.com" className="text-muted-foreground hover:text-primary">Email</a></li>
-            <li><a href="https://github.com/" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary">GitHub</a></li>
-            <li><a href="https://linkedin.com/" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary">LinkedIn</a></li>
+            <li><a href="mailto:ssmukundan3@gmail.com" className="text-muted-foreground hover:text-primary">Email</a></li>
+            <li><a href="https://github.com/mukundan-code" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary">GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/mukundan-saravanan-aa5320323/" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary">LinkedIn</a></li>
           </ul>
         </div>
       </div>
