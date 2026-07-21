@@ -15,8 +15,8 @@ export const Route = createFileRoute("/contact")({
 
 const links = [
   { label: "Email", value: "ssmukundan3@gmail.com", href: "mailto:ssmukundan3@gmail.com" },
-  { label: "GitHub", value: "github.com/mukundan-code", href: "https://github.com/mukundan-code" },
-  { label: "LinkedIn", value: "linkedin.com/in/mukundan-saravanan", href: "https://www.linkedin.com/in/mukundan-saravanan-aa5320323/" },
+  { label: "GitHub", value: "mukundan-code", href: "https://github.com/mukundan-code" },
+  { label: "LinkedIn", value: "Mukundan Saravanan", href: "https://www.linkedin.com/in/mukundan-saravanan-aa5320323/" },
   { label: "CV", value: "Download PDF", href: "/cv.pdf" },
 ];
 
