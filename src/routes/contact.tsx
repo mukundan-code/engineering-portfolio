@@ -14,9 +14,9 @@ export const Route = createFileRoute("/contact")({
 });
 
 const links = [
-  { label: "Email", value: "mukundan.saravanan@example.com", href: "mailto:mukundan.saravanan@example.com" },
-  { label: "GitHub", value: "github.com/mukundan-saravanan", href: "https://github.com/" },
-  { label: "LinkedIn", value: "linkedin.com/in/mukundan-saravanan", href: "https://linkedin.com/" },
+  { label: "Email", value: "ssmukundan3@gmail.com", href: "mailto:ssmukundan3@gmail.com" },
+  { label: "GitHub", value: "github.com/mukundan-code", href: "https://github.com/mukundan-code" },
+  { label: "LinkedIn", value: "linkedin.com/in/mukundan-saravanan", href: "https://www.linkedin.com/in/mukundan-saravanan-aa5320323/" },
   { label: "CV", value: "Download PDF", href: "/cv.pdf" },
 ];
 
