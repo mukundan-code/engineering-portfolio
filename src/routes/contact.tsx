@@ -14,7 +14,7 @@ export const Route = createFileRoute("/contact")({
 });
 
 const links = [
-  { label: "Email", value: "ssmukundan3@gmail.com", href: "mailto:ssmukundan3@gmail.com" },
+  { label: "Email", value: "ssmukundan3@gmail.com", href: "https://mail.google.com/mail/?view=cm&fs=1&to=ssmukundan3@gmail.com" }
   { label: "GitHub", value: "mukundan-code", href: "https://github.com/mukundan-code" },
   { label: "LinkedIn", value: "Mukundan Saravanan", href: "https://www.linkedin.com/in/mukundan-saravanan-aa5320323/" },
   { label: "CV", value: "Download PDF", href: "/cv.pdf" },
@@ -31,7 +31,7 @@ function Contact() {
           <a
             key={l.label}
             href={l.href}
-            target={l.href.startsWith("http") ? "_blank" : undefined}
+            target="_blank"
             rel="noreferrer"
             className="card-surface card-surface-hover p-6 group flex items-center justify-between gap-4"
           >
