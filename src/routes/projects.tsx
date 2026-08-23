@@ -1,92 +1,107 @@
-import { createFileRoute, Link, Outlet, useRouterState } from "@tanstack/react-router";
-import { useState } from "react";
-import { Section, Chip } from "@/components/section";
+import { createFileRoute } from "@tanstack/react-router";
+import { Section } from "@/components/section";
 
-export const Route = createFileRoute("/projects")({
-  head: () => ({
-    meta: [
-      { title: "Projects — Mukundan Saravanan" },
-      { name: "description", content: "Engineering, electronics and software projects by Mukundan Saravanan." },
-      { property: "og:title", content: "Projects — Mukundan Saravanan" },
-      { property: "og:description", content: "Case studies across software, electrical and embedded systems work." },
-    ],
-  }),
-  component: ProjectsLayout,
-});
-
-const projects = [
-  {
-    slug: "space-traders",
-    title: "Space Traders API Client",
-    kind: "Software",
-    year: "2026",
-    blurb: "Python + Tkinter client for the Space Traders REST API — fleet, contracts and persistence.",
-    stack: ["Python", "Tkinter", "REST", "JSON"],
-  },
-  {
-    slug: "workshop",
-    title: "Workshop Conversion Project",
-    kind: "Electrical",
-    year: "2024",
-    blurb: "End-to-end outbuilding conversion — planning, insulation, first-fix electrics, consumer unit.",
-    stack: ["Planning", "Insulation", "Electrical", "Procurement"],
-  },
-  {
-    slug: "future",
-    title: "Future Electronics Builds",
-    kind: "Embedded",
-    year: "2026+",
-    blurb: "Upcoming PCB, microcontroller and AI-hardware experiments.",
-    stack: ["MCU", "PCB", "FPGA"],
-  },
-];
-
-const filters = ["All", "Software", "Electrical", "Embedded"] as const;
-
-function ProjectsLayout() {
-  const path = useRouterState({ select: (s) => s.location.pathname });
-  if (path !== "/projects") return <Outlet />;
-
-  const [filter, setFilter] = useState<(typeof filters)[number]>("All");
-  const visible = projects.filter((p) => filter === "All" || p.kind === filter);
+function ProjectsComponent() {
+  const projectsList = [
+    {
+      title: "Motor Health & Predictive Maintenance Node",
+      badge: "Embedded / Signal Processing",
+      status: "Active Build",
+      description:
+        "Designing and prototyping a real-time monitoring unit for electric motors. The system samples vibration and thermal signatures, calculating FFT frequency spectra directly on-chip to detect bearing micro-wear prior to physical failure.",
+      metrics: [
+        "Hardware: ESP32 MCU, MPU6050 6-Axis IMU, DS18B20 Digital Sensor",
+        "Signal Processing: 1 kHz accelerometer sampling rate over SPI with Fast Fourier Transform (FFT)",
+        "Telemetry: Wi-Fi web interface delivering low-latency health diagnostics",
+      ],
+      githubLink: "https://github.com/mukundan-code",
+    },
+    {
+      title: "12m² Engineering Workshop & Power Distribution",
+      badge: "Electrical Engineering",
+      status: "Completed",
+      description:
+        "Converted an outbuilding into a high-safety electronics work space. Designed and executed thermal insulation, main supply integration, sub-board wiring, and dedicated ESD safety zones for PCB assembly.",
+      metrics: [
+        "Power Infrastructure: Dedicated 32A consumer unit with RCD protection",
+        "Layout: Ring main circuit distribution & dual-zone overhead LED task lighting",
+        "Environmental: Thermal moisture barrier insulation & ESD-grounded work surfaces",
+      ],
+      githubLink: "https://github.com/mukundan-code",
+    },
+    {
+      title: "Alpha Electrics Practical Diagnostics",
+      badge: "Commercial Electrical Systems",
+      status: "Work Experience",
+      description:
+        "Hands-on industry experience diagnosing electrical faults, performing consumer unit upgrades, and inspecting cable distribution networks under safe working practices.",
+      metrics: [
+        "Testing: Circuit continuity, insulation resistance testing, & polarity checks",
+        "Standards: BS 7671 wiring regulation compliance & safety verification",
+      ],
+      githubLink: "https://github.com/mukundan-code",
+    },
+  ];
 
   return (
-    <Section eyebrow="Projects" title="Case studies across software, electrical and embedded work.">
-      <div className="flex flex-wrap gap-2 mb-8">
-        {filters.map((f) => (
-          <button
-            key={f}
-            onClick={() => setFilter(f)}
-            className={`mono text-xs px-3 py-1.5 rounded-full border transition ${
-              filter === f
-                ? "border-primary bg-primary/15 text-primary"
-                : "border-border text-muted-foreground hover:border-primary/50"
-            }`}
+    <div className="space-y-16">
+      <Section
+        eyebrow="Portfolio"
+        title="Proof of engineering: Hardware, systems, and low-level builds."
+      >
+        <p className="text-muted-foreground leading-relaxed max-w-2xl -mt-4">
+          A collection of ongoing and completed engineering projects focused on embedded software, electrical infrastructure, and sensor measurement nodes.
+        </p>
+      </Section>
+
+      <div className="space-y-8">
+        {projectsList.map((project) => (
+          <div
+            key={project.title}
+            className="card-surface p-6 sm:p-8 rounded-xl border border-border space-y-4"
           >
-            {f}
-          </button>
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <div className="flex items-center gap-3">
+                <h3 className="font-semibold text-lg sm:text-xl">{project.title}</h3>
+                <span className="px-2.5 py-0.5 text-xs font-mono rounded-full bg-primary/10 text-primary border border-primary/20">
+                  {project.badge}
+                </span>
+              </div>
+              <span className="text-xs font-mono text-muted-foreground">{project.status}</span>
+            </div>
+
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              {project.description}
+            </p>
+
+            <div className="pt-2 border-t border-border/50">
+              <p className="text-xs font-mono uppercase tracking-wider text-primary mb-2">
+                Technical Highlights & Metrics
+              </p>
+              <ul className="space-y-1 text-xs font-mono text-foreground/90 list-disc list-inside">
+                {project.metrics.map((metric, i) => (
+                  <li key={i}>{metric}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="pt-2">
+              <a
+                href={project.githubLink}
+                target="_blank"
+                rel="noreferrer"
+                className="text-xs font-mono text-primary hover:underline inline-flex items-center gap-1"
+              >
+                View Repository / Code →
+              </a>
+            </div>
+          </div>
         ))}
       </div>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {visible.map((p) => (
-          <Link
-            key={p.slug}
-            to="/projects/$slug"
-            params={{ slug: p.slug }}
-            className="card-surface card-surface-hover p-6 flex flex-col group"
-          >
-            <div className="flex items-center justify-between">
-              <span className="chip">{p.kind}</span>
-              <span className="mono text-xs text-muted-foreground">{p.year}</span>
-            </div>
-            <h3 className="mt-4 text-lg font-semibold group-hover:text-primary transition-colors">{p.title}</h3>
-            <p className="mt-2 text-sm text-muted-foreground flex-1 leading-relaxed">{p.blurb}</p>
-            <div className="mt-4 flex flex-wrap gap-1.5">
-              {p.stack.map((s) => <Chip key={s}>{s}</Chip>)}
-            </div>
-          </Link>
-        ))}
-      </div>
-    </Section>
+    </div>
   );
 }
+
+export const Route = createFileRoute("/projects")({
+  component: ProjectsComponent,
+});
