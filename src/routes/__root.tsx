@@ -49,12 +49,18 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
-            onClick={() => { router.invalidate(); reset(); }}
+            onClick={() => {
+              router.invalidate();
+              reset();
+            }}
             className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:opacity-90"
           >
             Retry
           </button>
-          <a href="/" className="rounded-md border border-border px-4 py-2 text-sm font-medium hover:bg-accent">
+          <a
+            href="/"
+            className="rounded-md border border-border px-4 py-2 text-sm font-medium hover:bg-accent"
+          >
             Go home
           </a>
         </div>
@@ -72,14 +78,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Engineering portfolio of Mukundan Saravanan — A-Level student in Mathematics, Further Mathematics, Physics and Computer Science pursuing Electronics & Communication Engineering, AI hardware and semiconductor systems.",
+          "Engineering portfolio of Mukundan Saravanan — Exploring hardware acceleration, embedded systems, microarchitecture, and power distribution.",
       },
       { name: "author", content: "Mukundan Saravanan" },
       { property: "og:title", content: "Mukundan Saravanan | Engineering Portfolio" },
       {
         property: "og:description",
         content:
-          "Projects, research and engineering work by an A-Level student aiming for Electronics & Communication Engineering at Imperial, Cambridge, Oxford, UCL and Warwick.",
+          "Projects, hardware builds, and research notes in Electronics & Communication Engineering.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -104,7 +110,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <head><HeadContent /></head>
+      <head>
+        <HeadContent />
+      </head>
       <body>
         {children}
         <Scripts />
@@ -124,7 +132,11 @@ const NAV = [
 function Nav() {
   const [open, setOpen] = useState(false);
   const path = useRouterState({ select: (s) => s.location.pathname });
-  useEffect(() => { setOpen(false); }, [path]);
+
+  useEffect(() => {
+    setOpen(false);
+  }, [path]);
+
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 backdrop-blur-md bg-background/70">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5">
@@ -134,7 +146,9 @@ function Nav() {
           </span>
           <span className="hidden sm:flex flex-col leading-tight">
             <span className="text-sm font-semibold">Mukundan Saravanan</span>
-            <span className="mono text-[10px] uppercase tracking-widest text-muted-foreground">Engineering Portfolio</span>
+            <span className="mono text-[10px] uppercase tracking-widest text-muted-foreground">
+              Engineering Portfolio
+            </span>
           </span>
         </Link>
         <nav className="hidden md:flex items-center gap-1">
@@ -144,7 +158,9 @@ function Nav() {
               to={item.to}
               activeOptions={{ exact: item.to === "/" }}
               activeProps={{ className: "text-primary bg-primary/10" }}
-              inactiveProps={{ className: "text-muted-foreground hover:text-foreground hover:bg-accent/50" }}
+              inactiveProps={{
+                className: "text-muted-foreground hover:text-foreground hover:bg-accent/50",
+              }}
               className="rounded-md px-3 py-1.5 text-sm font-medium transition-colors"
             >
               {item.label}
@@ -157,7 +173,7 @@ function Nav() {
           aria-label="Menu"
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            {open ? <path d="M18 6L6 18M6 6l12 12"/> : <path d="M3 6h18M3 12h18M3 18h18"/>}
+            {open ? <path d="M18 6L6 18M6 6l12 12" /> : <path d="M3 6h18M3 12h18M3 18h18" />}
           </svg>
         </button>
       </div>
@@ -186,10 +202,12 @@ function Footer() {
     <footer className="mt-24 border-t border-border/60">
       <div className="mx-auto max-w-6xl px-5 py-10 grid gap-8 md:grid-cols-3">
         <div>
-          <p className="mono text-xs uppercase tracking-widest text-primary">Engineer · Student · Builder</p>
+          <p className="mono text-xs uppercase tracking-widest text-primary">
+            Engineer · Student · Builder
+          </p>
           <h3 className="mt-2 text-lg font-semibold">Mukundan Saravanan</h3>
           <p className="mt-2 text-sm text-muted-foreground max-w-xs">
-            Aspiring Electronics & Communication Engineer building real hardware, software and systems from the ground up.
+            Exploring how code becomes circuits, circuits become systems, and systems become intelligent machines.
           </p>
         </div>
         <div>
@@ -197,7 +215,9 @@ function Footer() {
           <ul className="mt-3 space-y-1.5 text-sm">
             {NAV.map((n) => (
               <li key={n.to}>
-                <Link to={n.to} className="text-muted-foreground hover:text-primary">{n.label}</Link>
+                <Link to={n.to} className="text-muted-foreground hover:text-primary">
+                  {n.label}
+                </Link>
               </li>
             ))}
           </ul>
@@ -205,9 +225,31 @@ function Footer() {
         <div>
           <p className="mono text-xs uppercase tracking-widest text-muted-foreground">Connect</p>
           <ul className="mt-3 space-y-1.5 text-sm">
-            <li><a href="mailto:ssmukundan3@gmail.com" className="text-muted-foreground hover:text-primary">Email</a></li>
-            <li><a href="https://github.com/mukundan-code" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary">GitHub</a></li>
-            <li><a href="https://www.linkedin.com/in/mukundan-saravanan-aa5320323/" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary">LinkedIn</a></li>
+            <li>
+              <a href="mailto:ssmukundan3@gmail.com" className="text-muted-foreground hover:text-primary">
+                Email
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://github.com/mukundan-code"
+                target="_blank"
+                rel="noreferrer"
+                className="text-muted-foreground hover:text-primary"
+              >
+                GitHub
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.linkedin.com/in/mukundan-saravanan-aa5320323/"
+                target="_blank"
+                rel="noreferrer"
+                className="text-muted-foreground hover:text-primary"
+              >
+                LinkedIn
+              </a>
+            </li>
           </ul>
         </div>
       </div>
@@ -227,7 +269,9 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <div className="min-h-screen flex flex-col">
         <Nav />
-        <main className="flex-1"><Outlet /></main>
+        <main className="flex-1">
+          <Outlet />
+        </main>
         <Footer />
       </div>
     </QueryClientProvider>
