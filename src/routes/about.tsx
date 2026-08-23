@@ -1,45 +1,35 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Section } from "@/components/section";
 
-export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title: "About — Mukundan Saravanan" },
-      { name: "description", content: "Engineering background, workshop build, and technical timeline." },
-    ],
-  }),
-  component: About,
-});
+function AboutComponent() {
+  const timelineEvents = [
+    {
+      year: "2024",
+      title: "Electrical Work Experience",
+      desc: "Gained practical experience with commercial electrical distribution, cable management, and safety compliance protocols.",
+    },
+    {
+      year: "2025",
+      title: "12m² Workshop Conversion",
+      desc: "Converted a 12m² outbuilding into a fully insulated electronics workshop featuring a dedicated 32A consumer unit, ring main, ESD-safe bench, and overhead lighting.",
+    },
+    {
+      year: "2026",
+      title: "Alpha Electrics",
+      desc: "Applied real-world electrical principles to fault diagnosis, system maintenance, and consumer unit setups.",
+    },
+    {
+      year: "2026",
+      title: "Embedded Systems & Monitoring Builds",
+      desc: "Developing predictive motor maintenance nodes, FFT acceleration on microcontrollers, and wireless sensor telemetry.",
+    },
+    {
+      year: "Future",
+      title: "ECE & AI Hardware Focus",
+      desc: "Aiming to specialize in computer architecture, FPGA hardware acceleration, and semiconductor digital logic design.",
+    },
+  ];
 
-const timelineEvents = [
-  {
-    year: "2024",
-    title: "Electrical Work Experience",
-    desc: "Gained practical experience with commercial electrical distribution, cable management, and safety compliance protocols.",
-  },
-  {
-    year: "2025",
-    title: "12m² Workshop Conversion",
-    desc: "Converted a 12m² outbuilding into a fully insulated electronics workshop featuring a dedicated 32A consumer unit, ring main, ESD-safe bench, and overhead lighting.",
-  },
-  {
-    year: "2026",
-    title: "Alpha Electrics",
-    desc: "Applied real-world electrical principles to fault diagnosis, system maintenance, and consumer unit setups.",
-  },
-  {
-    year: "2026",
-    title: "Embedded Systems & Monitoring Builds",
-    desc: "Developing predictive motor maintenance nodes, FFT acceleration on microcontrollers, and wireless sensor telemetry.",
-  },
-  {
-    year: "Future",
-    title: "ECE & AI Hardware Focus",
-    desc: "Aiming to specialize in computer architecture, FPGA hardware acceleration, and semiconductor digital logic design.",
-  },
-];
-
-function About() {
   return (
     <div className="space-y-16">
       {/* Intro */}
@@ -63,7 +53,7 @@ function About() {
         </div>
       </Section>
 
-      {/* Specificity Focus: Workshop Conversion */}
+      {/* Facility / Workshop */}
       <Section eyebrow="Facility" title="The 12m² Electronics Workshop">
         <div className="card-surface p-6 rounded-xl border border-border space-y-3">
           <p className="text-sm text-muted-foreground leading-relaxed">
@@ -80,3 +70,7 @@ function About() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/about")({
+  component: AboutComponent,
+});
